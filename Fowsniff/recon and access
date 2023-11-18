@@ -1,0 +1,14 @@
+Initial scan of target revealed ports 110/tcp (pop3) and 143/tcp (imap) to be open, suggesting this was a mail server of sorts.
+
+There was also a web server running on port 80 and navigating to the site reveals that the company recently suffered an attack and their internal employee username:password info was stolen.
+
+A google search of the company name brings up results for a twitter page that eventually leads to a github dump where the emails and their MD5 hashes (I know...) were leaked.
+
+Cracking the hashes with hashkiller.io provides the passwords and the using nc I was able to connect with one of the accounts, seina, to the pop3 mail server.
+
+From here, the user has two emails in her inbox, one of which seems to be from the admin of the team who provided them with a temp password to log in, stating it needed to be changed.
+
+Seina appears to have changed hers as it won't work for SSH. But using hydra to combine the users and the new temp pw grants us access to another account.
+
+From here, the room has no further questions which yield points.
+
